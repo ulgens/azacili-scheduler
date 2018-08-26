@@ -1,0 +1,322 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html xmlns:http="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>İTÜ Şenlikçi</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/1.4.0/css/bootstrap.min.css" integrity="sha256-zLPap+v5iCrSpak+McLIn4WFG9LB46x2JbO3WWax1aM=" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" integrity="sha256-R7aNzoy2gFrVs+pNJ6+SokH04ppcEqJ0yFLkNGoFALQ=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.2.3/underscore-min.js" integrity="sha256-3VpXQc9ijxUq052typru8VwZrD3mns9BtDIbV3ZBwFY=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.5.3/backbone-min.js" integrity="sha256-pHtGrw7VK6uEbeF2fgwJ7NRCSMzJ4nVfvfW1VQNqNew=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20120620/json_parse.min.js" integrity="sha256-jpFVGupBOTEDAc7KGwwL32K5sM7v80I+ka8xfgRsntg=" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="{% static 'js/new_models.js' %}" type="text/javascript"></script>
+        <script src="{% static 'js/new_views.js' %}" type="text/javascript"></script>
+
+        <meta name="description">
+        <meta name="keywords" content="azacili, az acılı, itü ders seçimi, itü şenlikçi, itü ders seçim programı, itü ders seçim şenlikleri, itü programcı">
+        <meta property="og:title" content="Az Acılı">
+        <meta property="og:url" content="http://www.itusenlikci.com/hosgeldiniz">
+        <meta property="og:image" content="content" http:="http:" www.itusenlikci.com="www.itusenlikci.com">
+    </head>
+
+    <body>
+        <div class="topbar">
+            <div class="fill">
+                <div class="container">
+                    <a class="brand" href="/">Az Acılı</a>
+                    <ul class="nav">
+                    </ul>
+                    <ul class="nav secondary-nav">
+                        <li><a href="#"></a></li>
+                        <li><a href="/logout" class="btn error" >Güvenli Çıkış</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <div class="span16">
+                        <span style="font-size:22px;display:block;margin-bottom:30px;">
+
+                        <script>
+                            $(document).ready(function() {
+                                models();
+
+                                bolumlist= new BolumList;
+                                bolumlist.reset([
+                                {"id":"18","kod":"AKM"},
+                                {"id":"46","kod":"ATA"},
+                                {"id":"21","kod":"BIL"},
+                                {"id":"33","kod":"BIO"},
+                                {"id":"4","kod":"BLG"},
+                                {"id":"40","kod":"CAB"},
+                                {"id":"10","kod":"CHZ"},
+                                {"id":"48","kod":"DEN"},
+                                {"id":"9","kod":"DFH"},
+                                {"id":"31","kod":"DNK"},
+                                {"id":"52","kod":"DUI"},
+                                {"id":"27","kod":"EHB"},
+                                {"id":"37","kod":"EKO"},
+                                {"id":"51","kod":"ELK"},
+                                {"id":"50","kod":"END"},
+                                {"id":"7","kod":"ETK"},
+                                {"id":"14","kod":"EUT"},
+                                {"id":"36","kod":"FIZ"},
+                                {"id":"49","kod":"GEM"},
+                                {"id":"24","kod":"GEO"},
+                                {"id":"26","kod":"GMI"},
+                                {"id":"54","kod":"HUK"},
+                                {"id":"23","kod":"ICM"},
+                                {"id":"11","kod":"ING"},
+                                {"id":"53","kod":"INS"},
+                                {"id":"5","kod":"ISH"},
+                                {"id":"12","kod":"ITB"},
+                                {"id":"28","kod":"JDF"},
+                                {"id":"43","kod":"JEF"},
+                                {"id":"30","kod":"JEO"},
+                                {"id":"29","kod":"KIM"},
+                                {"id":"3","kod":"KMP"},
+                                {"id":"41","kod":"MAD"},
+                                {"id":"45","kod":"MAK"},
+                                {"id":"6","kod":"MAL"},
+                                {"id":"25","kod":"MAT"},
+                                {"id":"42","kod":"MEK"},
+                                {"id":"8","kod":"MET"},
+                                {"id":"38","kod":"MIM"},
+                                {"id":"44","kod":"MTO"},
+                                {"id":"47","kod":"MTR"},
+                                {"id":"22","kod":"MUH"},
+                                {"id":"39","kod":"MUK"},
+                                {"id":"17","kod":"MUZ"},
+                                {"id":"35","kod":"PEM"},
+                                {"id":"2","kod":"SBP"},
+                                {"id":"34","kod":"SES"},
+                                {"id":"20","kod":"SNT"},
+                                {"id":"15","kod":"STA"},
+                                {"id":"16","kod":"TER"},
+                                {"id":"1","kod":"TES"},
+                                {"id":"13","kod":"TUR"},
+                                {"id":"32","kod":"UCK"},
+                                {"id":"19","kod":"UZB"}]);
+
+                                views();
+
+                                window.crnlistview.addCrnWithCode().selectCrn("25", "97", "30411/176", function(){
+                                    window.crnlistview.addCrnWithCode().selectCrn("36", "190", "30287/360", function(){});
+                                });
+                            });
+
+                        </script>
+                        <p>CRN'leri kolayca kopyalayın: <span id="crn-easy-copy" ></span></p>
+                        <p>Üstteki CRN'lere ait javascript butonu, crnler son haline geldiğinde sık kullanılanlara sürükleyip bırakın. Ders seçim sayfasında tıkladığınızda hızlıca dolduracaktır: <a id="crn-easy-fill" class="btn btn-default" href="#">CRN Doldur!</a></p>
+                        <div id="crn-list"  >
+                            <ul class="unstyled" >
+                            </ul>
+                            <a id="crn-new" href="#" class="btn success">+ders ekle</a>
+                            <a id="save-program" href="#" class="btn disabled success" data=""  data-loading-text="Kaydediliyor..." >Kaydedildi</a>
+                        </div>
+                        <table style="margin-top:10px;" class="condensed-table bordered-table">
+                            <thead>
+                                <tr>
+                                    <th>Gün/Saat</th>
+                                    <th>Pazartesi</th>
+                                    <th>Salı</th>
+                                    <th>Çarşamba</th>
+                                    <th>Perşembe</th>
+                                    <th>Cuma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="saat" >8:30-9:29</td>
+                                    <td saat="8"  gun="Pazartesi" ></td>
+                                    <td saat="8"  gun="Salı" ></td>
+                                    <td saat="8"  gun="Çarşamba" ></td>
+                                    <td saat="8"  gun="Perşembe" ></td>
+                                    <td saat="8"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >9:30-10:29</td>
+                                    <td saat="9"  gun="Pazartesi" ></td>
+                                    <td saat="9"  gun="Salı" ></td>
+                                    <td saat="9"  gun="Çarşamba" ></td>
+                                    <td saat="9"  gun="Perşembe" ></td>
+                                    <td saat="9"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >10:30-11:29</td>
+                                    <td saat="10"  gun="Pazartesi" ></td>
+                                    <td saat="10"  gun="Salı" ></td>
+                                    <td saat="10"  gun="Çarşamba" ></td>
+                                    <td saat="10"  gun="Perşembe" ></td>
+                                    <td saat="10"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >11:30-12:29</td>
+                                    <td saat="11"  gun="Pazartesi" ></td>
+                                    <td saat="11"  gun="Salı" ></td>
+                                    <td saat="11"  gun="Çarşamba" ></td>
+                                    <td saat="11"  gun="Perşembe" ></td>
+                                    <td saat="11"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >12:30-13:29</td>
+                                    <td saat="12"  gun="Pazartesi" ></td>
+                                    <td saat="12"  gun="Salı" ></td>
+                                    <td saat="12"  gun="Çarşamba" ></td>
+                                    <td saat="12"  gun="Perşembe" ></td>
+                                    <td saat="12"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >13:30-14:29</td>
+                                    <td saat="13"  gun="Pazartesi" ></td>
+                                    <td saat="13"  gun="Salı" ></td>
+                                    <td saat="13"  gun="Çarşamba" ></td>
+                                    <td saat="13"  gun="Perşembe" ></td>
+                                    <td saat="13"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >14:30-15:29</td>
+                                    <td saat="14"  gun="Pazartesi" ></td>
+                                    <td saat="14"  gun="Salı" ></td>
+                                    <td saat="14"  gun="Çarşamba" ></td>
+                                    <td saat="14"  gun="Perşembe" ></td>
+                                    <td saat="14"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >15:30-16:29</td>
+                                    <td saat="15"  gun="Pazartesi" ></td>
+                                    <td saat="15"  gun="Salı" ></td>
+                                    <td saat="15"  gun="Çarşamba" ></td>
+                                    <td saat="15"  gun="Perşembe" ></td>
+                                    <td saat="15"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >16:30-17:29</td>
+                                    <td saat="16"  gun="Pazartesi" ></td>
+                                    <td saat="16"  gun="Salı" ></td>
+                                    <td saat="16"  gun="Çarşamba" ></td>
+                                    <td saat="16"  gun="Perşembe" ></td>
+                                    <td saat="16"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >17:30-18:29</td>
+                                    <td saat="17"  gun="Pazartesi" ></td>
+                                    <td saat="17"  gun="Salı" ></td>
+                                    <td saat="17"  gun="Çarşamba" ></td>
+                                    <td saat="17"  gun="Perşembe" ></td>
+                                    <td saat="17"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >18:30-19:29</td>
+                                    <td saat="18"  gun="Pazartesi" ></td>
+                                    <td saat="18"  gun="Salı" ></td>
+                                    <td saat="18"  gun="Çarşamba" ></td>
+                                    <td saat="18"  gun="Perşembe" ></td>
+                                    <td saat="18"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >19:30-20:29</td>
+                                    <td saat="19"  gun="Pazartesi" ></td>
+                                    <td saat="19"  gun="Salı" ></td>
+                                    <td saat="19"  gun="Çarşamba" ></td>
+                                    <td saat="19"  gun="Perşembe" ></td>
+                                    <td saat="19"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >20:30-21:29</td>
+                                    <td saat="20"  gun="Pazartesi" ></td>
+                                    <td saat="20"  gun="Salı" ></td>
+                                    <td saat="20"  gun="Çarşamba" ></td>
+                                    <td saat="20"  gun="Perşembe" ></td>
+                                    <td saat="20"  gun="Cuma" ></td>
+                                </tr>
+                                <tr>
+                                    <td class="saat" >21:30-22:29</td>
+                                    <td saat="21"  gun="Pazartesi" ></td>
+                                    <td saat="21"  gun="Salı" ></td>
+                                    <td saat="21"  gun="Çarşamba" ></td>
+                                    <td saat="21"  gun="Perşembe" ></td>
+                                    <td saat="21"  gun="Cuma" ></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <script type="text/template" id="crn-template">
+                            <li class="crn-row" >
+                                <select id="bolum" name="bolum" class="span2">
+                                    <option selected="selected" value="-" >---</option>
+
+                                    <%  bolumler.each(function(item) {   %>
+
+
+                                        <option value="<%=  item.get('id') %>"><%=  item.get('kod') %></option>
+
+
+                                    <%   });  %>
+
+                                </select>
+
+                                <select id="ders" name="ders" class="span3">
+                                    <option selected="selected" value="-" >---</option>
+
+
+
+                                </select>
+
+                                <select id="crn" name="crn" class="span3">
+                                    <option selected="selected" value="-" >---</option>
+
+
+                                </select>
+
+                                <a id="crn-delete" href="#" class="btn error">X</a>
+
+                                <a id="forum-search" href="#"  style="display: none;" target="_blank" >dersi forumda tartış</a>
+
+                            </li>
+                        </script>
+                        <script type="text/template" id="ders-select">
+                            <option selected="selected" value="-" >---</option>
+                            <% if (dersler != "-" ) { dersler.each(function(item) {   %>
+
+
+                                <option value="<%=  item.get('id') %>"><%=  item.get('kod') %> - <%=  item.get('ders_adi') %></option>
+
+
+                            <%   });  } %>
+                        </script>
+                        <script type="text/template" id="crn-select">
+                            <option selected="selected" value="-" >---</option>
+                            <% if (crnler != "-" ) { crnler.each(function(item) {   %>
+
+
+                                <option value="<%=  item.get('kod')+'/'+ item.get('id') %>"><%=  item.get('kod') +": "+ item.get('ogretim_uyesi') +"  ("+ item.get('gun') +": "+ item.get('saat') + ")  (Bina: "+ item.get('bina') + ")" %></option>
+
+
+                            <%   }); } %>
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p><span class="copy-left">&copy;</span> Az Acılı 2018 - <a href="https://www.linkedin.com/in/%C3%BClgen-sar%C4%B1kavak-810b05100/">Ülgen Sarıkavak</a></p>
+            </footer>
+        </div>
+    </body>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28246613-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</html>
