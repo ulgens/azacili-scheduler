@@ -45,6 +45,8 @@ class Course(models.Model):
 
 
 class Section(models.Model):
+    is_active = models.BooleanField(default=True)
+
     code = models.IntegerField(verbose_name="CRN")
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     lecturer = models.ForeignKey(Instructor, on_delete=models.PROTECT)
@@ -54,6 +56,8 @@ class Section(models.Model):
 
 
 class Lesson(models.Model):
+    is_active = models.BooleanField(default=True)
+
     building = models.ForeignKey(Building, on_delete=models.PROTECT)
     room = models.CharField(max_length=16)
     day = models.PositiveSmallIntegerField(choices=DAY_OF_THE_WEEK)
