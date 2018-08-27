@@ -37,7 +37,8 @@ class Program(models.Model):
 
 
 class Course(models.Model):
-    name = models.CharField(max_length=32)
+    code = models.CharField(max_length=16)
+    name = models.CharField(max_length=64)
     program = models.ForeignKey(Program, on_delete=models.PROTECT)
 
     def __str__(self):
@@ -49,7 +50,7 @@ class Section(models.Model):
 
     code = models.IntegerField(verbose_name="CRN")
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
-    lecturer = models.ForeignKey(Instructor, on_delete=models.PROTECT)
+    lecturer = models.ForeignKey(Instructor, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return self.code
@@ -57,12 +58,13 @@ class Section(models.Model):
 
 class Lesson(models.Model):
     is_active = models.BooleanField(default=True)
+    order = models.PositiveSmallIntegerField(null=True)
 
-    building = models.ForeignKey(Building, on_delete=models.PROTECT)
-    room = models.CharField(max_length=16)
-    day = models.PositiveSmallIntegerField(choices=DAY_OF_THE_WEEK)
-    start_time = models.TimeField(verbose_name="Ders başlangıç saati")
-    end_time = models.TimeField(verbose_name="Ders bitiş saati")
+    building = models.ForeignKey(Building, on_delete=models.PROTECT, null=True)
+    room = models.CharField(max_length=16, null=True)
+    day = models.PositiveSmallIntegerField(choices=DAY_OF_THE_WEEK, null=True)
+    start_time = models.TimeField(verbose_name="Ders başlangıç saati", null=True)
+    end_time = models.TimeField(verbose_name="Ders bitiş saati", null=True)
 
     def __str__(self):
         return f"{self.get_day_display()}: {self.start_time} - {self.end_time}"

@@ -3,6 +3,8 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 
+from time import strptime
+import datetime
 from azacili import settings
 from schedule.models import Program, Section, Course, Building, Instructor, Lesson
 
@@ -12,6 +14,15 @@ BASE_CATALOG_URL = settings.BASE_CATALOG_URL
 BUILDINGS_URL = settings.BUILDINGS_URL
 
 
+DAYS_TURKISH = {
+    "pazartesi": 1,
+    "salı": 2,
+    "çarşamba": 3,
+    "perşembe": 4,
+    "cuma": 5,
+    "cumartesi": 6,
+    "pazar": 7,
+}
 
 
 def update_programs():
@@ -64,3 +75,114 @@ def update_buildings():
             logger.info(f"Building '{building_code}: {building_name}' has created.")
 
 
+def update_courses(programs=None):
+    # Update all programs as default
+    if not programs:
+        programs = Program.objects.all()
+
+    for program in programs.iterator():
+        r = requests.get(BASE_CATALOG_URL + program.code)
+        soup = BeautifulSoup(r.content, "html5lib")
+
+        # Convert <br> to new line.
+        # .get_text() doesn't handle br as new line
+        for br in soup.find_all("br"):
+            br.replace_with("\n")
+
+        sections = Section.objects.filter(course__program=program)
+        crns = sections.values_list()
+        active_sections = sections.filter(is_active=True)
+
+        raw_table = soup.find("table", class_="dersprg")
+        # First two tr are title
+        raw_courses = raw_table.find_all("tr")[2:]
+
+        new_sections = []
+
+        for course in raw_courses:
+            rows = course.find_all("td")
+            data = [row.get_text() for row in rows]
+
+            section_code = int(data[0].strip())
+            course_code = data[1].strip()
+            course_name = data[2].strip()
+            instructor_name = data[3].strip()
+            buildings = data[4].strip()
+            days = data[5].strip()
+            times = data[6].strip()
+            rooms = data[7].strip()
+
+            # Import course
+            course, course_created = Course.objects.get_or_create(
+                code=course_code,
+                program=program,
+                defaults={"name": course_name},
+            )
+
+            if course_created:
+                logger.info(f"Course '{course_code}: {course_name}' has created.")
+
+            # Import instructor
+            if instructor_name == "***":
+                instructor = None
+            else:
+                instructor, instructor_created = Instructor.objects.get_or_create(
+                    name=instructor_name,
+                )
+
+                if instructor_created:
+                    logger.info(f"Instructor '{instructor_name}' has created.")
+
+            # Import section
+            section, section_created = Section.objects.get_or_create(
+                code=section_code,
+                course=course,
+                lecturer=instructor,
+            )
+
+            if section_created:
+                logger.info(f"Section '{section_code}' for {course_code} has created.")
+
+            # Import lesson
+            lesson_data = zip(buildings.split(), rooms.split(), days.split(), times.split())
+
+            for index, (building, room, day, lesson_time) in enumerate(lesson_data, 1):
+
+                if building == "---":
+                    building = None
+                else:
+                    building, building_created = Building.objects.get_or_create(code=building)
+
+                    if building_created:
+                        logger.info(f"Building '{building.code}' has created.")
+
+                if room == "---" or not room:
+                    room = None
+
+                if day == "----" or not day:
+                    day = None
+                else:
+                    day = DAYS_TURKISH[day.lower()]
+
+                try:
+                    start_time, end_time = map(lambda x: strptime(x, "%H%M"), lesson_time.split("/"))
+                except ValueError:
+                    start_time = None
+                    end_time = None
+                else:
+                    start_time = datetime.time(start_time.tm_hour, start_time.tm_min)
+                    end_time = datetime.time(end_time.tm_hour, end_time.tm_min)
+
+                lesson, lesson_created = Lesson.objects.update_or_create(
+                    order=index,
+                    defaults={
+                        "building": building,
+                        "room": room,
+                        "day": day,
+                        "start_time": start_time,
+                        "end_time": end_time,
+                    }
+                )
+
+                if lesson_created:
+                    logger.info(f"Lesson '{index}' for {section.code} has created.")
