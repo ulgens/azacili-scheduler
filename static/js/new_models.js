@@ -41,16 +41,16 @@ window.Bolum = Backbone.Model.extend({
   initialize: function() {
     _.bindAll(this, 'apiBolumNo' ,'cacheReady' );
 
-    this.cached ==false ;  //cache
-    this.dersler= new DersList ;
-    this.dersler.url = '/api/bolumler/' + this.id + '/dersler';
+    this.cached == false ;  //cache
+    this.dersler = new DersList ;
+    this.dersler.url = '/api/programs/' + this.id + '/courses';
 
 //    this.crnler.bind("reset", this.updateCounts);
   },
 
   apiBolumNo: function(bolum_id) {
 
-  this.dersler.url = '/api/bolumler/' + bolum_id + '/dersler';
+  this.dersler.url = '/api/programs/' + bolum_id + '/courses';
 
   },
 
