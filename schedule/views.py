@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+from schedule.models import Program
+
+
+class IndexView(TemplateView):
+    template_name = "index.html"
+    program_list = [{"id": p.id, "kod": p.code} for p in Program.objects.all()]
+    extra_context = {"programs": program_list}
