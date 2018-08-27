@@ -134,6 +134,7 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 BASE_CATALOG_URL = "http://www.sis.itu.edu.tr/tr/ders_programlari/LSprogramlar/prg.php?fb="
+BUILDINGS_URL = "http://www.sis.itu.edu.tr/tr/sistem/bina_kodlari.html"
 
 # Logging
 # Logging

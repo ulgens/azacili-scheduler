@@ -4,12 +4,14 @@ import requests
 from bs4 import BeautifulSoup
 
 from azacili import settings
-from schedule.models import Program, Section
-
+from schedule.models import Program, Section, Course, Building, Instructor, Lesson
 
 logger = logging.getLogger(__name__)
 
 BASE_CATALOG_URL = settings.BASE_CATALOG_URL
+BUILDINGS_URL = settings.BUILDINGS_URL
+
+
 
 
 def update_programs():
@@ -35,4 +37,30 @@ def update_programs():
 
     if removed_programs:
         logger.warning(f"Following programs are removed from SIS: {','.join(removed_programs)}")
+
+
+def update_buildings():
+    r = requests.get(BUILDINGS_URL)
+    soup = BeautifulSoup(r.content, "html.parser")
+
+    raw_table = soup.find_all("table")[-1]
+
+    raw_buildings = raw_table.find_all("tr")
+
+    for b in raw_buildings:
+        rows = b.find_all("td")
+        data = [row.get_text() for row in rows]
+
+        building_code = data[0]
+        building_name = data[1]
+        building_name = " ".join(building_name.split())
+
+        _, created = Building.objects.get_or_create(
+            code=building_code,
+            defaults={"name": building_name},
+        )
+
+        if created:
+            logger.info(f"Building '{building_code}: {building_name}' has created.")
+
 
