@@ -174,7 +174,9 @@ def update_courses(programs=None):
                     end_time = datetime.time(end_time.tm_hour, end_time.tm_min)
 
                 lesson, lesson_created = Lesson.objects.update_or_create(
+                    section=section,
                     order=index,
+
                     defaults={
                         "building": building,
                         "room": room,

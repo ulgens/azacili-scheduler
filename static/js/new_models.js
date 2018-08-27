@@ -10,14 +10,14 @@ window.Ders = Backbone.Model.extend({
   initialize: function() {
     this.cached ==false ;  //cache
     this.crnler = new CrnList;
-    this.crnler.url = '/api/dersler/' + this.id + '/crnler';
+    this.crnler.url = '/api/courses/' + this.id + '/sections';
 
 //    this.crnler.bind("reset", this.updateCounts);
   },
 
   apiDersNo: function(ders_id) {
 
-  this.crnler.url = '/api/dersler/' + ders_id + '/crnler';
+  this.crnler.url = '/api/courses/' + ders_id + '/sections';
 
   }
 

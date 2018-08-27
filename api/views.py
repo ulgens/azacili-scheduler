@@ -2,8 +2,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from api.serializers import ProgramSerializer, CourseSerializer
-from schedule.models import Program
+from api.serializers import CourseSerializer, ProgramSerializer, SectionSerializer
+from schedule.models import Program, Course
 
 
 class ProgramViewset(ReadOnlyModelViewSet):
@@ -17,5 +17,16 @@ class ProgramViewset(ReadOnlyModelViewSet):
 
         return Response(serializer.data)
 
+
+class CourseViewset(ReadOnlyModelViewSet):
+    queryset = Course.objects.filter()
+    serializer_class = CourseSerializer
+
+    @action(detail=True)
+    def sections(self, request, pk=None):
+        course = self.get_object()
+        serializer = SectionSerializer(course.section_set.all(), many=True)
+
+        return Response(serializer.data)
 
 

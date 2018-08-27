@@ -60,6 +60,7 @@ class Lesson(models.Model):
     is_active = models.BooleanField(default=True)
     order = models.PositiveSmallIntegerField(null=True)
 
+    section = models.ForeignKey(Section, on_delete=models.PROTECT)
     building = models.ForeignKey(Building, on_delete=models.PROTECT, null=True)
     room = models.CharField(max_length=16, null=True)
     day = models.PositiveSmallIntegerField(choices=DAY_OF_THE_WEEK, null=True)
