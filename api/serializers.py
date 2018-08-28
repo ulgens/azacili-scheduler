@@ -1,5 +1,3 @@
-from time import strftime
-
 from rest_framework import serializers
 
 from schedule.models import Program, Course, Section, Lesson
@@ -132,7 +130,7 @@ class SectionSerializer(serializers.ModelSerializer):
             if obj.start_time:
                 start_time = obj.start_time.strftime("%H:%M")
             else:
-               start_time = ""
+                start_time = ""
 
             if obj.end_time:
                 end_time = obj.end_time.strftime("%H:%M")
@@ -143,7 +141,6 @@ class SectionSerializer(serializers.ModelSerializer):
 
         lessons = obj.lesson_set.all()
         return " ".join(map(get_time_string, lessons))
-
 
     class Meta:
         model = Section
