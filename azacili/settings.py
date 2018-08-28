@@ -25,7 +25,7 @@ SECRET_KEY = 'q$b_q4))zpzl=2s3y5olz-3_a)#gj&7)155w&)02mlo6!w*d3a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"] if DEBUG else ["www.azacili.com"]
 
 
 # Application definition
