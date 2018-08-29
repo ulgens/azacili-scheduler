@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.urls import path, include, reverse_lazy
 from django.views.generic import RedirectView
 
@@ -15,5 +16,9 @@ urlpatterns = [
     path('scheduler', SchedulerView.as_view(), name="scheduler"),
     path('', RedirectView.as_view(url=reverse_lazy("scheduler"))),
     path('dersprogrami/', RedirectView.as_view(url=reverse_lazy("scheduler"))),
+    path('', LoginView.as_view(), name="login"),
+    path('logout', LogoutView.as_view(next_page='/'), name='logout'),
+
+    path('', include('social_django.urls', namespace='social')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

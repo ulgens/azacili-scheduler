@@ -5,3 +5,5 @@ requests==2.19.1
 beautifulsoup4==4.6.3
 django-extensions==2.1.0
 html5lib==1.0.1
+social-auth-app-django==2.1.0
+django-braces==1.13.0
