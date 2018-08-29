@@ -14,7 +14,7 @@ DAY_OF_THE_WEEK = (
 
 
 class Instructor(models.Model):
-    name = models.CharField(max_length=128)
+    name = models.CharField(max_length=1024)
 
     def __str__(self):
         return self.name
