@@ -8,9 +8,8 @@ ALLOWED_HOSTS = ["www.azacili.com"]
 
 SECRET_KEY = config["django"]["secret_key"]
 
-INSTALLED_APPS = [
-    'raven.contrib.django.raven_compat',
-] + INSTALLED_APPS
+INSTALLED_APPS.insert(0, 'raven.contrib.django.raven_compat')
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 RAVEN_CONFIG = {
     'dsn': config["sentry"]["dsn"],
