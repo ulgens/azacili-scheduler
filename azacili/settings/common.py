@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'azacili.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config["database"]["db"],
+        'USER': config["database"]["user"],
+        'PASSWORD': config["database"]["password"],
+        'HOST': config["database"]["host"],
+        'PORT': '5432',
     }
 }
 
