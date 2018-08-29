@@ -44,13 +44,11 @@ def app_deploy():
 
     # Create / update Python environment
     with python.virtualenv("/home/developer/.pyenv/versions/azacili/"):
-
         with cd('/home/developer/scheduler'):
             python.install_requirements("requirements.txt", upgrade=True, exists_action='s')
             run("find . -name '*.pyc' -exec rm -rf {} \;")
 
-            # run("python manage.py collectstatic -c --noinput --settings=better.settings.prod")
-            # run("python manage.py collectstatic -c --noinput")
+            run("python manage.py collectstatic -c --noinput --settings=azacili.settings.prod")
 
     sudo("systemctl daemon-reload")
     sudo("service gunicorn restart")
