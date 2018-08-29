@@ -1,0 +1,14 @@
+# /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=developer
+Group=www-data
+WorkingDirectory=/home/developer/scheduler/
+ExecStart=/home/developer/.pyenv/versions/azacili/bin/gunicorn --workers 3 --bind unix:azacili.sock azacili.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
