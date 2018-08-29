@@ -11,25 +11,21 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import configparser
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+config = configparser.ConfigParser()
+config.read(os.path.join(BASE_DIR, "azacili", "settings", "secrets.ini"))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q$b_q4))zpzl=2s3y5olz-3_a)#gj&7)155w&)02mlo6!w*d3a'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ["*"] if DEBUG else ["www.azacili.com"]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     # Django
     'django.contrib.admin',
@@ -181,3 +177,6 @@ LOGGING = {
         },
     },
 }
+
+SOCIAL_AUTH_FACEBOOK_KEY = config["facebook"]["SOCIAL_AUTH_FACEBOOK_KEY"]
+SOCIAL_AUTH_FACEBOOK_SECRET = config["facebook"]["SOCIAL_AUTH_FACEBOOK_SECRET"]
