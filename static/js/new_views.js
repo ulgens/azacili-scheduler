@@ -24,7 +24,7 @@ function views() {
 
                 $.ajax({
                     type: "POST",
-                    url: "/program/save",
+                    url: "/save",
                     data: $("#save-program").attr("data")
                 }).done(function(msg) {
                     //alert( "Data Saved: " + msg );
@@ -379,30 +379,21 @@ function views() {
         },
 
         renderSaveButton: function() {
-
             selected_crns = new Array;
 
             $('.crn-row', this.el).each(function(index) {
                 crn_id = $("#crn", this).val();
                 selected_crns.push(crn_id.split("/")[0]);
-
             });
 
-
-            //console.log(selected_crns);
             params = new Object;
             params.selected_crns = JSON.stringify(selected_crns);
 
-            s = ""
-            // selected_crns.forEach(function(crn, index, array){            s=s+index+"="+crn+"&";   });
             $("#save-program").addClass("primary");
             $("#save-program").html("Kaydet!");
             $("#save-program").removeClass("disabled");
             $("#save-program").removeClass("success");
-            console.log("*a*");
             console.log(params);
-            console.log("*b*");
-            console.log($.param(params));
             $("#save-program").attr("data", $.param(params));
         },
 

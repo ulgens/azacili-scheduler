@@ -53,7 +53,7 @@ class Section(models.Model):
     lecturer = models.ForeignKey(Instructor, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
-        return self.code
+        return str(self.code)
 
 
 class Lesson(models.Model):
