@@ -1,12 +1,13 @@
+import datetime
 import logging
+from time import strptime
 
 import requests
 from bs4 import BeautifulSoup
+from django.conf import settings
 
-from time import strptime
-import datetime
-from azacili import settings
-from schedule.models import Program, Section, Course, Building, Instructor, Lesson
+from schedule.models import Building, Course, Instructor, Lesson, Program, Section
+
 
 logger = logging.getLogger(__name__)
 
