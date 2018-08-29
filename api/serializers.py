@@ -92,6 +92,10 @@ class SectionSerializer(serializers.ModelSerializer):
     def get_bina(self, obj):
         lessons = obj.lesson_set.all()
         buildings = lessons.values_list("building__code", flat=True)
+        buildings = filter(lambda x: bool(x), buildings)
+
+        if not buildings:
+            return "---"
 
         return " ".join(buildings)
 
