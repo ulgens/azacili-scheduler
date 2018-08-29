@@ -30,7 +30,7 @@
                     </ul>
                     <ul class="nav secondary-nav">
                         <li><a href="#"></a></li>
-                        <li><a href="/logout" class="btn error" >Güvenli Çıkış</a></li>
+                        <li><a href="/logout" class="btn error" >Çıkış</a></li>
                     </ul>
                 </div>
             </div>
@@ -63,14 +63,6 @@
                             });
 
                         </script>
-
-                            {% for section in registered_sections %}
-                                <script>
-
-                                </script>
-                                {{ section.code }}
-                            {% endfor %}
-
 
                         <p>CRN'leri kolayca kopyalayın: <span id="crn-easy-copy" ></span></p>
                         <p>Üstteki CRN'lere ait javascript butonu, crnler son haline geldiğinde sık kullanılanlara sürükleyip bırakın. Ders seçim sayfasında tıkladığınızda hızlıca dolduracaktır: <a id="crn-easy-fill" class="btn btn-default" href="#">CRN Doldur!</a></p>
