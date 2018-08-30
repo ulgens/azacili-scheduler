@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from schedule.models import Section
+
+
+class SectionAdmin(admin.ModelAdmin):
+    search_fields = ("code", "lecturer")
+
+
+admin.site.register(Section, SectionAdmin)
