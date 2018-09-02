@@ -14,32 +14,30 @@
             <script src="https://code.jquery.com/jquery-2.0.3.min.js" type="text/javascript"></script>
             <script type="text/javascript">
                 $(function(){
-                  $("#form_s").on("submit", function () {
-                  $("#submit_s").prop('disabled', true);
-                });
-
+                    $("#form_s").on("submit", function () {
+                        $("#submit_s").prop('disabled', true);
+                    });
                 });
             </script>
             <div class="row">
-  <div class="col-md-8 col-md-offset-2"></div>
-</div>
+                <div class="col-md-8 col-md-offset-2"></div>
+            </div>
 
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <h1>Nedir?</h1>
-    <p>Az Acılı, şimdilik sadece ders seçimini takvim üstünde planlamanı sağlayacak bir araç. Daha fazlası olması için çalışıyoruz.</p>
-    <div style="height:56px;" class="fb-facepile" data-href="http://www.facebook.com/pages/%C4%B0T%C3%9C-%C5%9Eenlik%C3%A7i/272373206156371" data-max-rows="1" data-width="700"></div>
-  </div>
-</div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Nedir?</h1>
+                    <p>Az Acılı, şimdilik sadece ders seçimini takvim üstünde planlamanı sağlayacak bir araç. Daha fazlası olması için çalışıyoruz.</p>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <center>
+                        <a href="{% url "social:begin" "facebook" %}" style="display:block; width:250px;" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook ile giriş yap</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
 
-<div class="row">
-
-<div class="col-md-8 col-md-offset-2">
-
-<center>
-<a href="{% url "social:begin" "facebook" %}" style="display:block; width:250px;" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook ile giriş yap</a>
-</center>
-
-</div>
-</div>
