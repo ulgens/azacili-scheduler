@@ -1,37 +1,36 @@
 {% load static %}
+<!doctype html>
+<html lang="en">
 
-<html>
-    <head>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    </head>
-    <body>
-        <nav class="navbar navbar-light bg-light fixed-top navbar-expand-md" role="navigation">
-            <a class="navbar-brand" href="#">Az Acılı</a>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-md-2"></div>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
 
-            <div class="row">
-                <div class="col-lg-8 offset-md-2">
-                    <h1 class="card-title">Nedir?</h1>
-                    <p>Az Acılı, şimdilik sadece ders seçimini takvim üstünde planlamanı sağlayacak bir araç. Daha fazlası olması için çalışıyoruz.</p>
-                </div>
-            </div>
+    <title>Az Acılı</title>
 
-            <div class="row">
-                <div class="col-lg-8 offset-md-2">
-                    <center>
-                        <a href="{% url "social:begin" "facebook" %}" style="display:block; width:250px;" class="btn btn-primary">
-                            <i class="fa fa-facebook"></i> Facebook ile giriş yap
-                        </a>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </body>
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <form class="form-signin">
+        <img class="mb-4" src="{% static 'img/logo.svg' %}" alt="" width="200" height="160">
+        <p>Az Acılı, şimdilik sadece ders seçimini takvim üstünde planlamanı sağlayan bir araç. Daha fazlası olması için çalışıyoruz.</p>
+        <a href="{% url "social:begin" "facebook" %}"  class="btn btn-lg btn-primary btn-block">
+            <i class="fa fa-facebook"></i>&nbsp;&nbsp;Facebook ile giriş yap
+        </a>
+        <p></p>
+      <p class="mt-5 mb-3 text-muted">
+          <span style="display:inline-block; transform: rotateY(180deg);">&copy;</span>
+          2018 - <a href="https://www.linkedin.com/in/%C3%BClgen-sar%C4%B1kavak-810b05100/">Ülgen Sarıkavak</a>
+      </p>
+    </form>
+  </body>
 </html>
-
