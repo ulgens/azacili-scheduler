@@ -3,8 +3,6 @@ function views() {
     AppView = Backbone.View.extend({
         el: $("body"),
         initialize: function() {
-            console.log("calistiii");
-
             //Create a friends collection when the view is initialized.
             //Pass it a reference to this view to create a connection between the two
         },
@@ -12,10 +10,8 @@ function views() {
             "click #save-program": "saveProgram"
         },
         saveProgram: function() {
-            console.log("save?");
             button = $("#save-program");
             if (!button.hasClass('disabled')) {
-                console.log("save!");
                 $("#save-program").addClass("disabled");
                 $("#save-program").removeClass("primary");
                 $("#save-program").addClass("error");
@@ -27,7 +23,6 @@ function views() {
                     url: "/save",
                     data: $("#save-program").attr("data")
                 }).done(function(msg) {
-                    //alert( "Data Saved: " + msg );
                     $("#save-program").html("Kaydedildi");
                     $("#save-program").removeClass("error");
                     $("#save-program").addClass("success");
@@ -45,8 +40,6 @@ function views() {
     CrnView = Backbone.View.extend({
         tagName: "li",
         initialize: function() {
-            console.log("CrnView: initialize");
-
             _.bindAll(this, 'render', 'selectCrn', 'renderDers', 'renderCrn', 'crnChanged');
 
             //this.render();
@@ -65,15 +58,6 @@ function views() {
             });
             // Load the compiled HTML into the Backbone "el"
             $(this.el).html(template);
-
-
-
-            //selectDers("93", "1617", "20606-3367");
-
-            //console.log("OOOOOOOOOOOOOOOO");
-
-
-
 
             return this; // arka().arkaya().fonk().yazmak icin  AMA return false gibi asil islevi engelliyor
         },
@@ -95,7 +79,6 @@ function views() {
                 } else {
                     bolumlist.get(bolum_id).dersler.get(ders_id).crnler.fetch({
                         success: function() {
-                            console.log("crnler cached for:" + ders_id);
                             bolumlist.get(bolum_id).dersler.get(ders_id).cached = true;
                             self.renderCrn();
                             $("#crn", self.el).val(crn_val);
@@ -111,7 +94,6 @@ function views() {
 
 
             function selectDers(bolum_id, ders_id, crn_val) {
-                console.log("AAAAA," + bolum_id + " * " + ders_id + " * " + crn_val)
                 $("#bolum", self.el).val(bolum_id);
 
 
@@ -122,7 +104,6 @@ function views() {
                 } else {
                     bolumlist.get(bolum_id).dersler.fetch({
                         success: function() {
-                            console.log("dersler cached!");
                             bolumlist.get(bolum_id).cached = true;
                             self.renderDers();
                             $("#ders", self.el).val(ders_id);
@@ -143,7 +124,6 @@ function views() {
 
             bolum_id = $("#bolum", this.el).val();
             if (bolum_id != "-") {
-                console.log("talimat?");
                 if (bolumlist.get(bolum_id).cached) {
                     var template = _.template($("#ders-select").html(), {
                         dersler: bolumlist.get(bolum_id).dersler
@@ -156,7 +136,6 @@ function views() {
                 } else {
                     bolumlist.get(bolum_id).dersler.fetch({
                         success: function() {
-                            console.log("dersler cached!");
                             bolumlist.get(bolum_id).cached = true;
                             var template = _.template($("#ders-select").html(), {
                                 dersler: bolumlist.get(bolum_id).dersler
@@ -192,7 +171,6 @@ function views() {
             ders_id = $("#ders", self.el).val();
 
             if (ders_id != "-") {
-                console.log("talimat?");
                 if (bolumlist.get(bolum_id).dersler.get(ders_id).cached) {
                     var template = _.template($("#crn-select").html(), {
                         crnler: bolumlist.get(bolum_id).dersler.get(ders_id).crnler
@@ -201,7 +179,6 @@ function views() {
                 } else {
                     bolumlist.get(bolum_id).dersler.get(ders_id).crnler.fetch({
                         success: function() {
-                            console.log("crnler cached!");
                             bolumlist.get(bolum_id).dersler.get(ders_id).cached = true;
                             var template = _.template($("#crn-select").html(), {
                                 crnler: bolumlist.get(bolum_id).dersler.get(ders_id).crnler
@@ -227,7 +204,6 @@ function views() {
 
 
         crnChanged: function() {
-            console.log("crn.change");
             // CrnListView.renderTable();
             $(this.el).trigger('crn-changed', 'Hello World!');
         },
@@ -248,7 +224,6 @@ function views() {
     CrnListView = Backbone.View.extend({
         el: $("#crn-list"),
         initialize: function() {
-            console.log("CrnListView: initialize");
             _.bindAll(this, 'render', 'renderTable', 'renderSaveButton');
 
             this.render();
@@ -264,18 +239,10 @@ function views() {
         render: function() {
             self = this;
 
-            console.log("CrnListView: render");
-
-            //            var view = new CrnView();
-            //            console.log(view.el);
-            //            view.el=$('.crn-row',this.el)
-
             $('li', self.el).each(function(index, element) {
                 var view = new CrnView({
                     el: element
                 });
-
-                console.log(view.el);
             });
 
             self.renderTable();
@@ -285,26 +252,21 @@ function views() {
         },
 
         addCrn: function() {
-            console.log("CrnListView: addCrn");
             var view = new CrnView();
 
             view.render()
             $("ul", this.el).append(view.el);
-            console.log(view.el);
             return false; //linkin calismamasi icin
         },
         addCrnWithCode: function() {
-            console.log("CrnListView: addCrn");
             var view = new CrnView();
 
             view.render()
             $("ul", this.el).append(view.el);
-            console.log(view.el);
             return view;
         },
 
         renderTable: function() {
-            console.log("CrnListView:renderTable");
             var selected_crns = new Array;
 
             $('.crn-row', this.el).each(function(index) {
@@ -315,15 +277,11 @@ function views() {
                 if (crn_id != "-") {
                     crn = bolumlist.get(bolum_id).dersler.get(ders_id).crnler.get(crn_id.split("/")[1]);
 
-                    console.log(crn);
                     if (crn.get("bloklar")[0].saat1) {
                         selected_crns.push(crn);
                     }
                 }
             });
-
-            //console.log(crn_id.split("-")[0]);
-
 
             $("td").css('background', 'white');
             $("td:not(.saat)").html("");
@@ -334,7 +292,6 @@ function views() {
             selected_crns.forEach(function(crn, index, array) {
 
                 crn.get("bloklar").forEach(function(blok, index, array) {
-                    //console.log(blok);
                     saat1 = Number(blok.saat1.slice(0, 2));
                     saat2 = Number(blok.saat2.slice(0, 2));
 
@@ -345,8 +302,6 @@ function views() {
 
                         $(s).css('background', '#DBFF94');
                         $(s).html(crn.get("ders_adi"));
-                        console.log(crn.get("ders_adi"));
-                        //  console.log( saat1 );
                         saat1 = saat1 + 1;
                     }
 
@@ -364,18 +319,10 @@ function views() {
             }
 
             dup.forEach(function(data, index, array) {
-                console.log(data);
                 s = 'td[gun="' + data.split("-")[0] + '"][saat="' + data.split("-")[1] + '"]';
                 $(s).css('background', '#FF8566');
 
             });
-
-
-            //$("td").css('background', 'white');
-
-            //$(s).css('background', 'green');
-
-
         },
 
         renderSaveButton: function() {
@@ -393,12 +340,10 @@ function views() {
             $("#save-program").html("Kaydet!");
             $("#save-program").removeClass("disabled");
             $("#save-program").removeClass("success");
-            console.log(params);
             $("#save-program").attr("data", $.param(params));
         },
 
         renderCrnEasyCopy: function() {
-
             selected_crns = new Array;
 
             $('.crn-row', this.el).each(function(index) {
@@ -410,11 +355,7 @@ function views() {
 
             });
 
-
-
-
             s = ""
-            //selected_crns.forEach(function(crn, index, array){            s=s+index+"="+crn+"&";   });
 
             for (var i = 0; i < selected_crns.length; i++) {
                 crn = selected_crns[i];
