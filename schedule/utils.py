@@ -124,7 +124,7 @@ def update_courses(programs=None):
                 logger.info(f"Course '{course_code}: {course_name}' has created.")
 
             # Import instructor
-            if instructor_name == "***":
+            if instructor_name in ("***", "--"):
                 instructor = None
             else:
                 instructor, instructor_created = Instructor.objects.get_or_create(
@@ -138,7 +138,7 @@ def update_courses(programs=None):
             section, section_created = Section.objects.get_or_create(
                 code=section_code,
                 course=course,
-                lecturer=instructor,
+                defaults={"lecturer": instructor},
             )
 
             if section_created:
