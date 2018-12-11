@@ -2,7 +2,7 @@ Django==2.1.4
 psycopg2-binary==2.7.6.1
 django-extensions==2.1.4
 djangorestframework==3.9.0
-requests==2.20.1
+requests==2.21.0
 beautifulsoup4==4.6.3
 django-extensions==2.1.4
 html5lib==1.0.1
