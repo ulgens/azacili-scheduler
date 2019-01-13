@@ -40,6 +40,11 @@ class Course(models.Model):
     code = models.CharField(max_length=16)
     name = models.CharField(max_length=64)
     program = models.ForeignKey(Program, on_delete=models.PROTECT)
+    term = models.CharField(
+        default="2018-2019-02",
+        max_length=64,
+        db_index=True,
+    )
 
     def __str__(self):
         return self.name
