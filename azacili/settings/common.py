@@ -174,8 +174,8 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
-        'azacili.utils': {
-            'level': 'INFO',
+        'schedule.utils': {
+            'level': 'DEBUG',
             'handlers': ['console'],
             'propagete': False,
         },
