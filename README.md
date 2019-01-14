@@ -12,3 +12,5 @@ Azacili.com - scheduler is a Python/Django project with no special needs (for no
 * Install `requirements/dev.txt` file.
 * Copy `azacili/settings/secrets.ini.example` to `azacili/settings/secrets.ini` and fill out the details.
 * You are ready to go.
+
+[![Known Vulnerabilities](https://snyk.io/test/github/azacili/scheduler/badge.svg?targetFile=requirements.txt)](https://snyk.io/test/github/azacili/scheduler?targetFile=requirements.txt)
