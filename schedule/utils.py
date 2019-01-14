@@ -122,7 +122,7 @@ def update_courses(programs=None):
             )
 
             if course_created:
-                print(f"Course '{course_code}: {course_name}' has created.")
+                logger.info(f"Course '{course_code}: {course_name}' has created.")
 
             # Import instructor
             if instructor_name in ("***", "--"):
@@ -133,7 +133,7 @@ def update_courses(programs=None):
                 )
 
                 if instructor_created:
-                    print(f"Instructor '{instructor_name}' has created.")
+                    logger.info(f"Instructor '{instructor_name}' has created.")
 
             # Import section
             section, section_created = Section.objects.get_or_create(
@@ -143,7 +143,7 @@ def update_courses(programs=None):
             )
 
             if section_created:
-                print(f"Section '{section_code}' for {course_code} has created.")
+                logger.info(f"Section '{section_code}' for {course_code} has created.")
 
             # Import lesson
             lesson_data = zip(buildings.split(), rooms.split(), days.split(), times.split())

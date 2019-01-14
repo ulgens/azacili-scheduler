@@ -22,8 +22,6 @@ class SchedulerView(LoginRequiredMixin, TemplateView):
         program_list = [{"id": p.id, "kod": p.code} for p in Program.objects.all()]
         registered_sections = self.request.user.sections.filter(course__term="2018-2019-02").select_related("course")
 
-        print(registered_sections)
-
         ctx = super().get_context_data(**kwargs)
 
         ctx["programs"] = program_list
