@@ -1,7 +1,7 @@
 Django==2.2
 psycopg2-binary==2.8.2
 django-extensions==2.1.6
-djangorestframework==3.9.2
+djangorestframework==3.9.3
 requests==2.21.0
 beautifulsoup4==4.7.1
 django-extensions==2.1.6
