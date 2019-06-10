@@ -20,7 +20,7 @@ class SchedulerView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         program_list = [{"id": p.id, "kod": p.code} for p in Program.objects.all()]
-        registered_sections = self.request.user.sections.filter(course__term="2018-2019-02").select_related("course")
+        registered_sections = self.request.user.sections.filter(course__term="2018-2019-03").select_related("course")
 
         ctx = super().get_context_data(**kwargs)
 

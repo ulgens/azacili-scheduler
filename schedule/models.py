@@ -41,7 +41,7 @@ class Course(models.Model):
     name = models.CharField(max_length=64)
     program = models.ForeignKey(Program, on_delete=models.PROTECT)
     term = models.CharField(
-        default="2018-2019-02",
+        default="2018-2019-03",
         max_length=64,
         db_index=True,
     )
