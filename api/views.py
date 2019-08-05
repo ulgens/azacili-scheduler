@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
@@ -13,13 +14,13 @@ class ProgramViewset(ReadOnlyModelViewSet):
     @action(detail=True)
     def courses(self, request, pk=None):
         program = self.get_object()
-        serializer = CourseSerializer(program.course_set.filter(term="2019-2020-01"), many=True)
+        serializer = CourseSerializer(program.course_set.filter(term=settings.ACTIVE_TERM), many=True)
 
         return Response(serializer.data)
 
 
 class CourseViewset(ReadOnlyModelViewSet):
-    queryset = Course.objects.filter(term="2019-2020-01")
+    queryset = Course.objects.filter(term=settings.ACTIVE_TERM)
     serializer_class = CourseSerializer
 
     @action(detail=True)

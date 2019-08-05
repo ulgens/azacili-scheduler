@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
@@ -20,7 +21,7 @@ class SchedulerView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         program_list = [{"id": p.id, "kod": p.code} for p in Program.objects.all()]
-        registered_sections = self.request.user.sections.filter(course__term="2019-2020-01").select_related("course")
+        registered_sections = self.request.user.sections.filter(course__term=settings.ACTIVE_TERM).select_related("course")
 
         ctx = super().get_context_data(**kwargs)
 

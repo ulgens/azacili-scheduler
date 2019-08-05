@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext as _
 
@@ -41,7 +42,7 @@ class Course(models.Model):
     name = models.CharField(max_length=64)
     program = models.ForeignKey(Program, on_delete=models.PROTECT)
     term = models.CharField(
-        default="2019-2020-01",
+        default=settings.ACTIVE_TERM,
         max_length=64,
         db_index=True,
     )

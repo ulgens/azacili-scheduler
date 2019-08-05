@@ -117,7 +117,7 @@ def update_courses(programs=None):
             course, course_created = Course.objects.get_or_create(
                 code=course_code,
                 program=program,
-                term="2019-2020-01",
+                term=settings.ACTIVE_TERM,
                 defaults={"name": course_name},
             )
 
