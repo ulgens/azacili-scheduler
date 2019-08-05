@@ -13,13 +13,13 @@ class ProgramViewset(ReadOnlyModelViewSet):
     @action(detail=True)
     def courses(self, request, pk=None):
         program = self.get_object()
-        serializer = CourseSerializer(program.course_set.filter(term="2018-2019-03"), many=True)
+        serializer = CourseSerializer(program.course_set.filter(term="2019-2020-01"), many=True)
 
         return Response(serializer.data)
 
 
 class CourseViewset(ReadOnlyModelViewSet):
-    queryset = Course.objects.filter(term="2018-2019-03")
+    queryset = Course.objects.filter(term="2019-2020-01")
     serializer_class = CourseSerializer
 
     @action(detail=True)
