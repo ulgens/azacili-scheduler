@@ -1,3 +1,8 @@
+# TODO:
+#       - Add change detection for all updates and print them to logs
+#       update_or_create doesn't return "if updated" information.
+
+
 import datetime
 import logging
 from time import strptime
@@ -63,6 +68,8 @@ def update_programs():
 
 
 def update_buildings():
+    # TODO:
+    #       - Copy logging output from update_programs()
     r = requests.get(BUILDINGS_URL)
     soup = BeautifulSoup(r.content, "html.parser")
 
@@ -88,8 +95,10 @@ def update_buildings():
 
 
 def update_courses(programs=None):
-    # Update all programs as default
     if not programs:
+    # TODO:
+    #       - Copy logging output from update_programs()
+
         programs = Program.objects.all()
 
     for program in programs.iterator():
