@@ -33,6 +33,9 @@ class Program(models.Model):
     name = models.CharField(max_length=64, verbose_name="Bölüm Adı")
     code = models.CharField(max_length=8, verbose_name="Bölüm Kodu")
 
+    class Meta:
+        ordering = ["code"]
+
     def __str__(self):
         return self.code
 
