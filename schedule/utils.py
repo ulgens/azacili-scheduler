@@ -64,7 +64,8 @@ def update_programs():
     removed_programs = set(codes) - set(programs)
 
     if removed_programs:
-        logger.warning(f"Following programs are removed from SIS: {','.join(removed_programs)}")
+        logger.warning(f"Following programs are removed from SIS and should be handled manually: "
+                       f"{','.join(removed_programs)}")
 
 
 def update_buildings():
@@ -77,6 +78,7 @@ def update_buildings():
 
     buildings = raw_table.find_all("tr")
 
+    logger.info("Buildings:")
 
     for b in buildings:
         rows = b.find_all("td")
@@ -91,8 +93,10 @@ def update_buildings():
             defaults={"name": building_name},
         )
 
-        if created:
-            logger.info(f"Building '{building_code}: {building_name}' has created.")
+        if not created:
+            logger.info(f"{building_code}: {building_name}")
+        else:
+            logger.info(f"{building_code}: {building_name} - NEW")
 
 
 def update_courses(program_codes=None):
@@ -145,8 +149,10 @@ def update_courses(program_codes=None):
                 defaults={"name": course_name},
             )
 
-            if course_created:
-                logger.info(f"Course '{course_code}: {course_name}' has created.")
+            if not course_created:
+                logger.info(f"Course: {course_code} - {course_name}")
+            else:
+                logger.info(f"Course: {course_code} - {course_name} - NEW")
 
             # Import instructor
             if instructor_name in ("***", "--"):
@@ -166,8 +172,10 @@ def update_courses(program_codes=None):
                 defaults={"lecturer": instructor},
             )
 
+            if not section_created:
+                logger.info(f"Section: {section_code}")
             if section_created:
-                logger.info(f"Section '{section_code}' for {course_code} has created.")
+                logger.info(f"Section: {section_code} - NEW")
 
             # Import lesson
             lesson_data = zip(buildings.split(), rooms.split(), days.split(), times.split())
