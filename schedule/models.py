@@ -30,6 +30,7 @@ class Building(models.Model):
 
 
 class Program(models.Model):
+    # name field is not used. SIS doesn't return names in program selection page.
     name = models.CharField(max_length=64, verbose_name="Bölüm Adı")
     code = models.CharField(max_length=8, verbose_name="Bölüm Kodu")
 

@@ -35,6 +35,7 @@ def update_programs():
     program_options = map(lambda x: x.attrs["value"].strip(), program_options)
     # Remove empty items
     program_options = list(filter(lambda x: bool(x), program_options))
+    # Sort alphabetically
     program_options = sorted(program_options)
 
     sis_program_count = len(program_options)
@@ -48,9 +49,9 @@ def update_programs():
         program, created = Program.objects.get_or_create(code=option)
 
         if not created:
-            logger.info(f"{program.name} - {program.code}.")
+            logger.info(f"{program.code}.")
         else:
-            logger.info(f"{program.name} - {program.code} - NEW")
+            logger.info(f"{program.code} - NEW")
 
 
     # Check if any program is removed from SIS
