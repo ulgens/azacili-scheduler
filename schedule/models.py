@@ -62,6 +62,9 @@ class Section(models.Model):
     course = models.ForeignKey(Course, on_delete=models.PROTECT)
     lecturer = models.ForeignKey(Instructor, on_delete=models.PROTECT, null=True)
 
+    class Meta:
+        ordering = ["code"]
+
     def __str__(self):
         return str(self.code)
 
