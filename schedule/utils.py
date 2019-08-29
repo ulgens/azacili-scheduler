@@ -94,12 +94,15 @@ def update_buildings():
             logger.info(f"Building '{building_code}: {building_name}' has created.")
 
 
-def update_courses(programs=None):
-    if not programs:
+def update_courses(program_codes=None):
     # TODO:
     #       - Copy logging output from update_programs()
 
+    # Update all programs as default behaviour
+    if not program_codes:
         programs = Program.objects.all()
+    else:
+        programs = Program.objects.filter(code__in=program_codes)
 
     for program in programs.iterator():
         r = requests.get(BASE_CATALOG_URL + program.code)
