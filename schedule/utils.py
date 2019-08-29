@@ -35,23 +35,23 @@ def update_programs():
     soup = BeautifulSoup(r.content, "html.parser")
 
     # Get raw data
-    program_options = soup.find("select").find_all("option")
+    programs = soup.find("select").find_all("option")
     # Extract values
-    program_options = map(lambda x: x.attrs["value"].strip(), program_options)
+    programs = map(lambda x: x.attrs["value"].strip(), programs)
     # Remove empty items
-    program_options = list(filter(lambda x: bool(x), program_options))
+    programs = list(filter(lambda x: bool(x), programs))
     # Sort alphabetically
-    program_options = sorted(program_options)
+    programs = sorted(programs)
 
-    sis_program_count = len(program_options)
+    sis_program_count = len(programs)
     db_program_count = Program.objects.count()
 
     logger.info("Programs:")
     logger.info(f"- {sis_program_count} programs came from SIS.")
     logger.info(f"- {db_program_count} programs found in database.")
 
-    for option in program_options:
-        program, created = Program.objects.get_or_create(code=option)
+    for p in programs:
+        program, created = Program.objects.get_or_create(code=p)
 
         if not created:
             logger.info(f"{program.code}.")
@@ -61,7 +61,7 @@ def update_programs():
 
     # Check if any program is removed from SIS
     codes = Program.objects.all().values_list("code", flat=True)
-    removed_programs = set(codes) - set(program_options)
+    removed_programs = set(codes) - set(programs)
 
     if removed_programs:
         logger.warning(f"Following programs are removed from SIS: {','.join(removed_programs)}")
@@ -75,9 +75,10 @@ def update_buildings():
 
     raw_table = soup.find_all("table")[-1]
 
-    raw_buildings = raw_table.find_all("tr")
+    buildings = raw_table.find_all("tr")
 
-    for b in raw_buildings:
+
+    for b in buildings:
         rows = b.find_all("td")
         data = [row.get_text() for row in rows]
 
@@ -85,7 +86,7 @@ def update_buildings():
         building_name = data[1]
         building_name = " ".join(building_name.split())
 
-        _, created = Building.objects.get_or_create(
+        building, created = Building.objects.update_or_create(
             code=building_code,
             defaults={"name": building_name},
         )
@@ -172,7 +173,6 @@ def update_courses(program_codes=None):
             lesson_data = zip(buildings.split(), rooms.split(), days.split(), times.split())
 
             for index, (building, room, day, lesson_time) in enumerate(lesson_data, 1):
-
                 if building == "---":
                     building = None
                 else:
@@ -201,7 +201,6 @@ def update_courses(program_codes=None):
                 lesson, lesson_created = Lesson.objects.update_or_create(
                     section=section,
                     order=index,
-
                     defaults={
                         "building": building,
                         "room": room,
