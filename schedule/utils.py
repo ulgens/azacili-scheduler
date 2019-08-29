@@ -8,7 +8,6 @@ from django.conf import settings
 
 from schedule.models import Building, Course, Instructor, Lesson, Program, Section
 
-
 logger = logging.getLogger(__name__)
 
 BASE_CATALOG_URL = settings.BASE_CATALOG_URL
@@ -36,12 +35,23 @@ def update_programs():
     program_options = map(lambda x: x.attrs["value"].strip(), program_options)
     # Remove empty items
     program_options = list(filter(lambda x: bool(x), program_options))
+    program_options = sorted(program_options)
+
+    sis_program_count = len(program_options)
+    db_program_count = Program.objects.count()
+
+    logger.info("Programs:")
+    logger.info(f"- {sis_program_count} programs came from SIS.")
+    logger.info(f"- {db_program_count} programs found in database.")
 
     for option in program_options:
-        _, created = Program.objects.get_or_create(code=option)
+        program, created = Program.objects.get_or_create(code=option)
 
-        if created:
-            logger.info(f"Program '{option}' has created.")
+        if not created:
+            logger.info(f"{program.name} - {program.code}.")
+        else:
+            logger.info(f"{program.name} - {program.code} - NEW")
+
 
     # Check if any program is removed from SIS
     codes = Program.objects.all().values_list("code", flat=True)
