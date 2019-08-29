@@ -166,7 +166,7 @@ def update_courses(program_codes=None):
                     logger.info(f"Instructor '{instructor_name}' has created.")
 
             # Import section
-            section, section_created = Section.objects.get_or_create(
+            section, section_created = Section.objects.update_or_create(
                 code=section_code,
                 course=course,
                 defaults={"lecturer": instructor},
