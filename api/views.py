@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from api.serializers import CourseSerializer, ProgramSerializer, SectionSerializer
-from schedule.models import Program, Course
+from schedule.models import Course, Program, Section
 
 
 class ProgramViewset(ReadOnlyModelViewSet):
@@ -13,8 +13,11 @@ class ProgramViewset(ReadOnlyModelViewSet):
 
     @action(detail=True)
     def courses(self, request, pk=None):
-        program = self.get_object()
-        serializer = CourseSerializer(program.course_set.filter(term=settings.ACTIVE_TERM), many=True)
+        courses = Course.objects.filter(
+            program_id=pk,
+            term=settings.ACTIVE_TERM,
+        )
+        serializer = CourseSerializer(courses, many=True)
 
         return Response(serializer.data)
 
@@ -25,16 +28,15 @@ class CourseViewset(ReadOnlyModelViewSet):
 
     @action(detail=True)
     def sections(self, request, pk=None):
-        course = self.get_object()
-        serializer = SectionSerializer(
-            course.section_set.all().select_related(
-                "lecturer",
-            ).prefetch_related(
-                "lesson_set",
-                "lesson_set__building",
-            ),
-            many=True,
+        sections = Section.objects.filter(
+            course_id=pk,
+        ).select_related(
+            "lecturer",
+        ).prefetch_related(
+            "lesson_set",
+            "lesson_set__building",
         )
+        serializer = SectionSerializer(sections, many=True)
 
         return Response(serializer.data)
 
