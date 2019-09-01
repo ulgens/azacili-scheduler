@@ -1,0 +1,27 @@
+# Build env config
+language: python
+python: 3.7
+sudo: false
+cache:
+  directories:
+    - $HOME/.cache/pip
+install:
+  - pip install -r requirements.txt
+addons:
+  postgresql: "10"
+  apt:
+    packages:
+    - postgresql-10
+    - postgresql-client-10
+env:
+  global:
+  - PGPORT=5432
+services:
+  - postgresql
+
+# Run tests
+before_script:
+  - psql -c 'create database azacili;' -U postgres
+script: python manage.py test
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
