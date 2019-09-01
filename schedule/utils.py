@@ -58,7 +58,6 @@ def update_programs():
         else:
             logger.info(f"{program.code} - NEW")
 
-
     # Check if any program is removed from SIS
     codes = Program.objects.all().values_list("code", flat=True)
     removed_programs = set(codes) - set(programs)
@@ -119,14 +118,10 @@ def update_courses(program_codes=None):
             br.replace_with("\n")
 
         sections = Section.objects.filter(course__program=program)
-        crns = sections.values_list()
-        active_sections = sections.filter(is_active=True)
 
         raw_table = soup.find("table", class_="dersprg")
         # First two tr are title
         raw_courses = raw_table.find_all("tr")[2:]
-
-        new_sections = []
 
         for course in raw_courses:
             rows = course.find_all("td")

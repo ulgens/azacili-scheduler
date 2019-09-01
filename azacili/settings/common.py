@@ -21,10 +21,6 @@ config = configparser.ConfigParser()
 config.read(os.path.join(BASE_DIR, "azacili", "settings", "secrets.ini"))
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
-
-
-
 # Application definition
 INSTALLED_APPS = [
     # Django

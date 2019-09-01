@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from schedule.models import Program, Course, Section, Lesson
+from api.utils import get_day_name_from_int
+from schedule.models import Course, Lesson, Program, Section
 
 
 class ProgramSerializer(serializers.ModelSerializer):
@@ -35,20 +36,10 @@ class LessonSerializer(serializers.ModelSerializer):
         return obj.room or ""
 
     def get_gun(self, obj):
-        DAYS = {
-            1: "Pazartesi",
-            2: "Salı",
-            3: "Çarşamba",
-            4: "Perşembe",
-            5: "Cuma",
-            6: "Cumartesi",
-            7: "Pazar",
-        }
-
-        if obj.day:
-            return DAYS[obj.day]
-        else:
+        if not obj.day:
             return ""
+
+        return get_day_name_from_int(obj.day)
 
     def get_saat1(self, obj):
         if obj.start_time:
@@ -100,25 +91,9 @@ class SectionSerializer(serializers.ModelSerializer):
         return " ".join(buildings)
 
     def get_gun(self, obj):
-        def convert_day_name(day):
-            DAYS = {
-                1: "Pazartesi",
-                2: "Salı",
-                3: "Çarşamba",
-                4: "Perşembe",
-                5: "Cuma",
-                6: "Cumartesi",
-                7: "Pazar",
-            }
-
-            if day:
-                return DAYS[day]
-            else:
-                return ""
-
         lessons = obj.lesson_set.all()
         days = lessons.values_list("day", flat=True) or []
-        return " ".join(map(convert_day_name, days))
+        return " ".join(map(get_day_name_from_int, days))
 
     def get_derslik(self, obj):
         lessons = obj.lesson_set.all()

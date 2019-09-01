@@ -20,8 +20,15 @@ class SchedulerView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
+
         program_list = [{"id": p.id, "kod": p.code} for p in Program.objects.all()]
-        registered_sections = self.request.user.sections.filter(course__term=settings.ACTIVE_TERM).select_related("course")
+
+        registered_sections = user.sections.filter(
+            course__term=settings.ACTIVE_TERM,
+        ).select_related(
+            "course",
+        )
 
         ctx = super().get_context_data(**kwargs)
 

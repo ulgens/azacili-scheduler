@@ -46,7 +46,7 @@ def app_deploy():
     with python.virtualenv("/home/developer/.pyenv/versions/azacili/"):
         with cd('/home/developer/scheduler'):
             run("pip install -r requirements/prod.txt --upgrade --upgrade-strategy eager")
-            run("find . -name '*.pyc' -exec rm -rf {} \;")
+            run(r"find . -name '*.pyc' -exec rm -rf {} \;")
 
             run("python manage.py collectstatic -c --noinput --settings=azacili.settings.prod")
 
