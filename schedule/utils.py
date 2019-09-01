@@ -83,7 +83,7 @@ def update_buildings():
         rows = b.find_all("td")
         data = [row.get_text() for row in rows]
 
-        building_code = data[0]
+        building_code = data[0].strip()
         building_name = data[1]
         building_name = " ".join(building_name.split())
 
