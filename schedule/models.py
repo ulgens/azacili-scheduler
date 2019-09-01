@@ -25,6 +25,9 @@ class Building(models.Model):
     name = models.CharField(max_length=128)
     code = models.CharField(max_length=8)
 
+    class Meta:
+        ordering = ("code",)
+
     def __str__(self):
         return self.code
 
