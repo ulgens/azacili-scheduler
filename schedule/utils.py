@@ -34,6 +34,7 @@ def update_programs():
     r = requests.get(BASE_CATALOG_URL)
     soup = BeautifulSoup(r.content, "html.parser")
 
+    ## Clean data
     # Get raw data
     programs = soup.find("select").find_all("option")
     # Extract values
@@ -43,6 +44,8 @@ def update_programs():
     # Sort alphabetically
     programs = sorted(programs)
 
+    ## / Clean data
+
     sis_program_count = len(programs)
     db_program_count = Program.objects.count()
 
@@ -50,6 +53,7 @@ def update_programs():
     logger.info(f"- {sis_program_count} programs came from SIS.")
     logger.info(f"- {db_program_count} programs found in database.")
 
+    ## Import data
     for p in programs:
         program, created = Program.objects.get_or_create(code=p)
 
@@ -65,28 +69,40 @@ def update_programs():
     if removed_programs:
         logger.warning(f"Following programs are removed from SIS and should be handled manually: "
                        f"{','.join(removed_programs)}")
+    ## / Import data
 
 
 def update_buildings():
-    # TODO:
-    #       - Copy logging output from update_programs()
     r = requests.get(BUILDINGS_URL)
     soup = BeautifulSoup(r.content, "html.parser")
 
+    ## Clean data
     raw_table = soup.find_all("table")[-1]
+    raw_buildings = raw_table.find_all("tr")
 
-    buildings = raw_table.find_all("tr")
-
-    logger.info("Buildings:")
-
-    for b in buildings:
-        rows = b.find_all("td")
+    buildings = {}
+    for raw_b in raw_buildings:
+        rows = raw_b.find_all("td")
         data = [row.get_text() for row in rows]
 
-        building_code = data[0].strip()
-        building_name = data[1]
-        building_name = " ".join(building_name.split())
+        code = data[0].strip()
+        name = " ".join(data[1].split())
 
+        buildings[code] = name
+        # Sort alphabetically
+
+    buildings = dict(sorted(buildings.items()))
+    ## / Clean data
+
+    sis_building_count = len(buildings)
+    db_building_count = Building.objects.count()
+
+    logger.info("Buildings:")
+    logger.info(f"- {sis_building_count} buildings came from SIS.")
+    logger.info(f"- {db_building_count} buildings found in database.")
+
+    ## Import data
+    for building_code, building_name in buildings.items():
         building, created = Building.objects.update_or_create(
             code=building_code,
             defaults={"name": building_name},
@@ -96,6 +112,14 @@ def update_buildings():
             logger.info(f"{building_code}: {building_name}")
         else:
             logger.info(f"{building_code}: {building_name} - NEW")
+
+    codes = Building.objects.all().values_list("code", flat=True)
+    removed_buildings = set(codes) - set(buildings.keys())
+
+    if removed_buildings:
+        logger.warning(f"Following buildings are removed from SIS and should be handled manually: "
+                       f"{','.join(removed_buildings)}")
+    ## / Import data
 
 
 def update_courses(program_codes=None):
@@ -116,8 +140,6 @@ def update_courses(program_codes=None):
         # .get_text() doesn't handle br as new line
         for br in soup.find_all("br"):
             br.replace_with("\n")
-
-        sections = Section.objects.filter(course__program=program)
 
         raw_table = soup.find("table", class_="dersprg")
         # First two tr are title
