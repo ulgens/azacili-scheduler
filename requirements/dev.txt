@@ -2,5 +2,5 @@
 
 django-debug-toolbar==2.1
 django-sslserver==0.21
-ipdb==0.12.2
+ipdb==0.12.3
 ipython==7.10.0
