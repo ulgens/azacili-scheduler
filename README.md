@@ -8,8 +8,7 @@ Azacili.com - scheduler is a Python/Django project with no special needs (for no
 * Uses PostgreSQL for data storage.
 
 # Install
-* Create a virtual environment with Python 3.7
-* Install `requirements/dev.txt` file.
+* Create virtual env and install dependencencies with `poetry install`
 * Copy `azacili/settings/secrets.ini.example` to `azacili/settings/secrets.ini` and fill out the details.
 * You are ready to go.
 

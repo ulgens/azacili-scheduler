@@ -1,4 +1,0 @@
--r base.txt
-
-gunicorn==20.0.4
-whitenoise==5.0.1
