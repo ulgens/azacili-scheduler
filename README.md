@@ -4,7 +4,7 @@
 
 Azacili.com - scheduler is a Python/Django project with no special needs (for now).
 
-* Tested with Python 3.7 but should work with 3.6 too. If it doesn't, please create an issue.
+* Tested with Python 3.8.
 * Uses PostgreSQL for data storage.
 
 # Install
