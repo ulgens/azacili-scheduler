@@ -9,7 +9,7 @@ authors = [
 [tool.poetry.dev-dependencies]
 django-debug-toolbar = "2.2"
 django-sslserver = "0.22"
-ipdb = "0.13.2"
+ipdb = "0.13.3"
 ipython = "7.15.0"
 fabric = "2.5.0"
 factory-boy = "2.12.0"
