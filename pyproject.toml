@@ -10,7 +10,7 @@ authors = [
 django-debug-toolbar = "2.2"
 django-sslserver = "0.22"
 ipdb = "0.13.3"
-ipython = "7.18.0"
+ipython = "7.18.1"
 fabric = "2.5.0"
 factory-boy = "3.0.1"
 
