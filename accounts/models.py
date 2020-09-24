@@ -6,3 +6,7 @@ from schedule.models import Section
 
 class User(AbstractUser):
     sections = models.ManyToManyField(Section)
+
+    class Meta(AbstractUser.Meta):
+        ordering = ("-date_joined", )
+
