@@ -15,7 +15,7 @@ fabric = "2.5.0"
 factory-boy = "3.0.1"
 
 [tool.poetry.dependencies]
-python = "3.8.3"
+python = "3.8.5"
 beautifulsoup4= "4.9.1"
 Django = "3.1.1"
 django-braces = "1.14.0"
