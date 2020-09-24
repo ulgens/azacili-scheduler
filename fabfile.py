@@ -48,7 +48,7 @@ def app_deploy():
             run("pip install -r requirements.txt --upgrade --upgrade-strategy eager")
             run(r"find . -name '*.pyc' -exec rm -rf {} \;")
 
-            run("python manage.py collectstatic -c --noinput --settings=azacili.settings.prod")
+            run("python manage.py collectstatic -c --noinput --settings=core.settings.prod")
 
     sudo("systemctl daemon-reload")
     sudo("service gunicorn restart")

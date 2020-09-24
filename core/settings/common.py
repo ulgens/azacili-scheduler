@@ -18,7 +18,7 @@ import configparser
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 config = configparser.ConfigParser()
-config.read(os.path.join(BASE_DIR, "azacili", "settings", "secrets.ini"))
+config.read(os.path.join(BASE_DIR, "core", "settings", "secrets.ini"))
 
 
 # Application definition
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
-ROOT_URLCONF = 'azacili.urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'azacili.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
