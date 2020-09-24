@@ -5,14 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
-    replaces = [
-        ('accounts', '0001_initial'),
-        ('accounts', '0002_user_lessons'),
-        ('accounts', '0003_auto_20180828_2243'),
-        ('accounts', '0004_auto_20200924_1804'),
-    ]
-
     dependencies = [
         ('auth', '0009_alter_user_last_name_max_length'),
         ('schedule', '0001'),

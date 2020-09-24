@@ -3,21 +3,7 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    replaces = [
-        ('schedule', '0001_initial'),
-        ('schedule', '0002_auto_20180829_1036'),
-        ('schedule', '0003_course_term'),
-        ('schedule', '0004_auto_20190113_0805'),
-        ('schedule', '0005_auto_20190610_0601'),
-        ('schedule', '0006_auto_20190805_0332'),
-        ('schedule', '0007_auto_20190829_0057'),
-        ('schedule', '0008_auto_20190829_0134'),
-        ('schedule', '0009_auto_20190901_1249'),
-        ('schedule', '0010'),
-    ]
-
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
