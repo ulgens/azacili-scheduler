@@ -33,8 +33,8 @@ class CourseViewset(ReadOnlyModelViewSet):
         ).select_related(
             "lecturer",
         ).prefetch_related(
-            "lesson_set",
-            "lesson_set__building",
+            "lessons",
+            "lessons__building",
         )
         serializer = SectionSerializer(sections, many=True)
 

@@ -75,13 +75,13 @@ class SectionSerializer(serializers.ModelSerializer):
             return ""
 
     def get_bloklar(self, obj):
-        lessons = obj.lesson_set.all()
+        lessons = obj.lessons.all()
         serializer = LessonSerializer(lessons, many=True)
 
         return serializer.data
 
     def get_bina(self, obj):
-        lessons = obj.lesson_set.all()
+        lessons = obj.lessons.all()
         buildings = lessons.values_list("building__code", flat=True)
         buildings = filter(lambda x: bool(x), buildings)
 
@@ -91,12 +91,12 @@ class SectionSerializer(serializers.ModelSerializer):
         return " ".join(buildings)
 
     def get_gun(self, obj):
-        lessons = obj.lesson_set.all()
+        lessons = obj.lessons.all()
         days = lessons.values_list("day", flat=True) or []
         return " ".join(map(get_day_name_from_int, days))
 
     def get_derslik(self, obj):
-        lessons = obj.lesson_set.all()
+        lessons = obj.lessons.all()
         rooms = [l.room or "" for l in lessons]
 
         return " ".join(rooms)
@@ -118,7 +118,7 @@ class SectionSerializer(serializers.ModelSerializer):
 
             return start_time + "/" + end_time
 
-        lessons = obj.lesson_set.all()
+        lessons = obj.lessons.all()
         return " ".join(map(get_time_string, lessons))
 
     class Meta:
