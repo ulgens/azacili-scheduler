@@ -4,7 +4,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('schedule', '0001_initial'),
+        ('schedule', '0001'),
         ('accounts', '0001_initial'),
     ]
 

@@ -180,6 +180,18 @@ version = "3.0.9"
 
 [[package]]
 category = "dev"
+description = "Django management commands to visualize migration graphs"
+name = "django-migration-vis"
+optional = false
+python-versions = ">=3.5"
+version = "2.0.0"
+
+[package.dependencies]
+Django = "*"
+graphviz = "*"
+
+[[package]]
+category = "dev"
 description = "An SSL-enabled development server for Django"
 name = "django-sslserver"
 optional = false
@@ -242,6 +254,19 @@ version = "4.1.3"
 [package.dependencies]
 python-dateutil = ">=2.4"
 text-unidecode = "1.3"
+
+[[package]]
+category = "dev"
+description = "Simple Python interface for Graphviz"
+name = "graphviz"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
+version = "0.14.1"
+
+[package.extras]
+dev = ["tox (>=3)", "flake8", "pep8-naming", "wheel", "twine"]
+docs = ["sphinx (>=1.8)", "sphinx-rtd-theme"]
+test = ["mock (>=3)", "pytest (>=4)", "pytest-mock (>=2)", "pytest-cov"]
 
 [[package]]
 category = "main"
@@ -711,7 +736,7 @@ version = "5.2.0"
 brotli = ["brotli"]
 
 [metadata]
-content-hash = "58a9d7104ba7da12ef1fe3f76dd60dcf8699ac994771bb8189d33d96c7c3b075"
+content-hash = "dd6c98645de08d189ee86b7c18a26b031ae9a124fec9caf0957ed0a9a44c5b41"
 lock-version = "1.0"
 python-versions = "3.8.5"
 
@@ -840,6 +865,10 @@ django-extensions = [
     {file = "django-extensions-3.0.9.tar.gz", hash = "sha256:6809c89ca952f0e08d4e0766bc0101dfaf508d7649aced1180c091d737046ea7"},
     {file = "django_extensions-3.0.9-py3-none-any.whl", hash = "sha256:dc663652ac9460fd06580a973576820430c6d428720e874ae46b041fa63e0efa"},
 ]
+django-migration-vis = [
+    {file = "django-migration-vis-2.0.0.tar.gz", hash = "sha256:291cceeb3da8d3b1b2b08b460f2266c637296c730d831f241f184d65b99871e3"},
+    {file = "django_migration_vis-2.0.0-py3-none-any.whl", hash = "sha256:ffd07ac97ce5a771d4fff900a46ab5ca9aad20738b911b4d800ab60c879e79b3"},
+]
 django-sslserver = [
     {file = "django_sslserver-0.22-py3-none-any.whl", hash = "sha256:c598a363d2ccdc2421c08ddb3d8b0973f80e8e47a3a5b74e4a2896f21c2947c5"},
 ]
@@ -857,6 +886,10 @@ factory-boy = [
 faker = [
     {file = "Faker-4.1.3-py3-none-any.whl", hash = "sha256:80bab8d46035a7393de827210c5d39c17109d3346d131946bde622137120c496"},
     {file = "Faker-4.1.3.tar.gz", hash = "sha256:075a95ac4c95765370919d787dcd958acfaea635005ad5af4d926cb0973800db"},
+]
+graphviz = [
+    {file = "graphviz-0.14.1-py2.py3-none-any.whl", hash = "sha256:088562ef6e3dad5e8dde9389caf4a84f768e65dcaa08238cfcdf36d2b30ccf61"},
+    {file = "graphviz-0.14.1.zip", hash = "sha256:f5aad52a652c06825dcc5ee018d920fca26aef339386866094597fb3f2f222ce"},
 ]
 gunicorn = [
     {file = "gunicorn-20.0.4-py2.py3-none-any.whl", hash = "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"},

@@ -1,0 +1,63 @@
+digraph {
+	"accounts/0001" [label="accounts/0001"]
+	"admin/0001_initial" [label="admin/0001_initial"]
+	"admin/0002_logentry_remove_auto_add" [label="admin/0002_logentry_remove_auto_add"]
+	"admin/0003_logentry_add_action_flag_choices" [label="admin/0003_logentry_add_action_flag_choices"]
+	"auth/0001_initial" [label="auth/0001_initial"]
+	"auth/0002_alter_permission_name_max_length" [label="auth/0002_alter_permission_name_max_length"]
+	"auth/0003_alter_user_email_max_length" [label="auth/0003_alter_user_email_max_length"]
+	"auth/0004_alter_user_username_opts" [label="auth/0004_alter_user_username_opts"]
+	"auth/0005_alter_user_last_login_null" [label="auth/0005_alter_user_last_login_null"]
+	"auth/0006_require_contenttypes_0002" [label="auth/0006_require_contenttypes_0002"]
+	"auth/0007_alter_validators_add_error_messages" [label="auth/0007_alter_validators_add_error_messages"]
+	"auth/0008_alter_user_username_max_length" [label="auth/0008_alter_user_username_max_length"]
+	"auth/0009_alter_user_last_name_max_length" [label="auth/0009_alter_user_last_name_max_length"]
+	"auth/0010_alter_group_name_max_length" [label="auth/0010_alter_group_name_max_length"]
+	"auth/0011_update_proxy_permissions" [label="auth/0011_update_proxy_permissions"]
+	"auth/0012_alter_user_first_name_max_length" [label="auth/0012_alter_user_first_name_max_length"]
+	"contenttypes/0001_initial" [label="contenttypes/0001_initial"]
+	"contenttypes/0002_remove_content_type_name" [label="contenttypes/0002_remove_content_type_name"]
+	"schedule/0001" [label="schedule/0001"]
+	"sessions/0001_initial" [label="sessions/0001_initial"]
+	"social_django/0001_initial" [label="social_django/0001_initial"]
+	"social_django/0002_add_related_name" [label="social_django/0002_add_related_name"]
+	"social_django/0003_alter_email_max_length" [label="social_django/0003_alter_email_max_length"]
+	"social_django/0004_auto_20160423_0400" [label="social_django/0004_auto_20160423_0400"]
+	"social_django/0005_auto_20160727_2333" [label="social_django/0005_auto_20160727_2333"]
+	"social_django/0006_partial" [label="social_django/0006_partial"]
+	"social_django/0007_code_timestamp" [label="social_django/0007_code_timestamp"]
+	"social_django/0008_partial_timestamp" [label="social_django/0008_partial_timestamp"]
+	"social_django/0009_auto_20191118_0520" [label="social_django/0009_auto_20191118_0520"]
+	"social_django/0010_uid_db_index" [label="social_django/0010_uid_db_index"]
+	"accounts/0001" -> "auth/0009_alter_user_last_name_max_length"
+	"accounts/0001" -> "schedule/0001"
+	"admin/0001_initial" -> "accounts/0001"
+	"admin/0001_initial" -> "contenttypes/0001_initial"
+	"admin/0002_logentry_remove_auto_add" -> "admin/0001_initial"
+	"admin/0003_logentry_add_action_flag_choices" -> "admin/0002_logentry_remove_auto_add"
+	"auth/0001_initial" -> "contenttypes/0001_initial"
+	"auth/0002_alter_permission_name_max_length" -> "auth/0001_initial"
+	"auth/0003_alter_user_email_max_length" -> "auth/0002_alter_permission_name_max_length"
+	"auth/0004_alter_user_username_opts" -> "auth/0003_alter_user_email_max_length"
+	"auth/0005_alter_user_last_login_null" -> "auth/0004_alter_user_username_opts"
+	"auth/0006_require_contenttypes_0002" -> "auth/0005_alter_user_last_login_null"
+	"auth/0006_require_contenttypes_0002" -> "contenttypes/0002_remove_content_type_name"
+	"auth/0007_alter_validators_add_error_messages" -> "auth/0006_require_contenttypes_0002"
+	"auth/0008_alter_user_username_max_length" -> "auth/0007_alter_validators_add_error_messages"
+	"auth/0009_alter_user_last_name_max_length" -> "auth/0008_alter_user_username_max_length"
+	"auth/0010_alter_group_name_max_length" -> "auth/0009_alter_user_last_name_max_length"
+	"auth/0011_update_proxy_permissions" -> "auth/0010_alter_group_name_max_length"
+	"auth/0011_update_proxy_permissions" -> "contenttypes/0002_remove_content_type_name"
+	"auth/0012_alter_user_first_name_max_length" -> "auth/0011_update_proxy_permissions"
+	"contenttypes/0002_remove_content_type_name" -> "contenttypes/0001_initial"
+	"social_django/0001_initial" -> "accounts/0001"
+	"social_django/0002_add_related_name" -> "social_django/0001_initial"
+	"social_django/0003_alter_email_max_length" -> "social_django/0002_add_related_name"
+	"social_django/0004_auto_20160423_0400" -> "social_django/0003_alter_email_max_length"
+	"social_django/0005_auto_20160727_2333" -> "social_django/0004_auto_20160423_0400"
+	"social_django/0006_partial" -> "social_django/0005_auto_20160727_2333"
+	"social_django/0007_code_timestamp" -> "social_django/0006_partial"
+	"social_django/0008_partial_timestamp" -> "social_django/0007_code_timestamp"
+	"social_django/0009_auto_20191118_0520" -> "social_django/0008_partial_timestamp"
+	"social_django/0010_uid_db_index" -> "social_django/0009_auto_20191118_0520"
+}

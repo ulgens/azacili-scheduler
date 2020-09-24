@@ -6,8 +6,11 @@ ALLOWED_HOSTS = ["*"]
 
 SECRET_KEY = 'developer'
 
-INSTALLED_APPS.insert(0, "sslserver")
-INSTALLED_APPS.append("debug_toolbar")
+INSTALLED_APPS = [
+    "django_migration_vis",
+    "debug_toolbar",
+    "sslserver",
+] + INSTALLED_APPS
 
 MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
