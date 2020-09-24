@@ -8,7 +8,7 @@ After=network.target
 User=developer
 Group=www-data
 WorkingDirectory=/home/developer/scheduler/
-ExecStart=/home/developer/.pyenv/versions/azacili/bin/gunicorn --workers 3 --bind unix:azacili.sock azacili.wsgi:application
+ExecStart=/home/developer/.pyenv/versions/azacili/bin/gunicorn --workers 3 --bind unix:azacili.sock core.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
