@@ -5,6 +5,7 @@
 
 import datetime
 import logging
+from itertools import zip_longest
 from time import strptime
 
 import requests
@@ -195,12 +196,12 @@ def update_courses(program_codes=None):
                 logger.info(f"Section: {section_code} - NEW")
 
             # Import lesson
-            lesson_data = zip(buildings.split(), rooms.split(), days.split(), times.split())
+            lesson_data = zip_longest(buildings.split(), rooms.split(), days.split(), times.split())
 
             for index, (building, room, day, lesson_time) in enumerate(lesson_data, 1):
-                if building == "---":
-                    building = None
-                else:
+                building = None if building == "---" else building
+
+                if building:
                     building, building_created = Building.objects.get_or_create(code=building)
 
                     if building_created:
