@@ -182,3 +182,13 @@ SOCIAL_AUTH_FACEBOOK_KEY = config["facebook"]["SOCIAL_AUTH_FACEBOOK_KEY"]
 SOCIAL_AUTH_FACEBOOK_SECRET = config["facebook"]["SOCIAL_AUTH_FACEBOOK_SECRET"]
 
 ACTIVE_TERM = "2020-2021-01"
+
+SHELL_PLUS_PRE_IMPORTS = (
+    (
+        "schedule.utils", (
+            "update_programs",
+            "update_buildings",
+            "update_courses",
+        )
+    ),
+)
