@@ -75,7 +75,7 @@ class SectionSerializer(serializers.ModelSerializer):
             return ""
 
     def get_bloklar(self, obj):
-        lessons = obj.lessons.all()
+        lessons = obj.lessons.all().order_by("day")
         serializer = LessonSerializer(lessons, many=True)
 
         return serializer.data
