@@ -236,7 +236,7 @@ description = "A versatile test fixtures replacement based on thoughtbot's facto
 name = "factory-boy"
 optional = false
 python-versions = ">=3.5"
-version = "3.0.1"
+version = "3.1.0"
 
 [package.dependencies]
 Faker = ">=0.7.0"
@@ -739,7 +739,7 @@ version = "5.2.0"
 brotli = ["brotli"]
 
 [metadata]
-content-hash = "34d53fee8d27b07e32adc001d89fc91f9751643a47c6889828bca152bdfdd5ae"
+content-hash = "17ae4148f27c59434ff4c1fda730862dc088a2d2d80291291dfd2dacd401c7b2"
 lock-version = "1.0"
 python-versions = "3.8.5"
 
@@ -884,7 +884,7 @@ fabric = [
     {file = "fabric-2.5.0.tar.gz", hash = "sha256:24842d7d51556adcabd885ac3cf5e1df73fc622a1708bf3667bf5927576cdfa6"},
 ]
 factory-boy = [
-    {file = "factory_boy-3.0.1.tar.gz", hash = "sha256:2ce2f665045d9f15145a6310565fcb8255d52fc6fd867f3b783b3ac3de6cf10e"},
+    {file = "factory_boy-3.1.0-py2.py3-none-any.whl", hash = "sha256:d8626622550c8ba31392f9e19fdbcef9f139cf1ad643c5923f20490a7b3e2e3d"},
 ]
 faker = [
     {file = "Faker-4.1.3-py3-none-any.whl", hash = "sha256:80bab8d46035a7393de827210c5d39c17109d3346d131946bde622137120c496"},
