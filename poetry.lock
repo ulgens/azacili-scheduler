@@ -200,7 +200,7 @@ Django = ">=1.8"
 
 [[package]]
 name = "djangorestframework"
-version = "3.12.1"
+version = "3.12.2"
 description = "Web APIs for Django, made easy."
 category = "main"
 optional = false
@@ -718,7 +718,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.5"
-content-hash = "5defc591f6db2f9e5b04116ef3bcd105d0d154928916ade706e8dc8f7bb79098"
+content-hash = "bda29d7fe2e4d0aa19bd2b450027f9d9205718a6be9102b06ea36dad0eb23606"
 
 [metadata.files]
 appnope = [
@@ -853,8 +853,7 @@ django-sslserver = [
     {file = "django_sslserver-0.22-py3-none-any.whl", hash = "sha256:c598a363d2ccdc2421c08ddb3d8b0973f80e8e47a3a5b74e4a2896f21c2947c5"},
 ]
 djangorestframework = [
-    {file = "djangorestframework-3.12.1-py3-none-any.whl", hash = "sha256:5c5071fcbad6dce16f566d492015c829ddb0df42965d488b878594aabc3aed21"},
-    {file = "djangorestframework-3.12.1.tar.gz", hash = "sha256:d54452aedebb4b650254ca092f9f4f5df947cb1de6ab245d817b08b4f4156249"},
+    {file = "djangorestframework-3.12.2-py3-none-any.whl", hash = "sha256:0209bafcb7b5010fdfec784034f059d512256424de2a0f084cb82b096d6dd6a7"},
 ]
 fabric = [
     {file = "fabric-2.5.0-py2.py3-none-any.whl", hash = "sha256:160331934ea60036604928e792fa8e9f813266b098ef5562aa82b88527740389"},
