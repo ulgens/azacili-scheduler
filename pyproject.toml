@@ -18,7 +18,7 @@ factory-boy = "3.2.0"
 [tool.poetry.dependencies]
 python = "3.8.5"
 beautifulsoup4= "4.9.3"
-Django = "3.1.6"
+Django = "3.1.7"
 django-braces = "1.14.0"
 django-extensions = "3.1.1"
 djangorestframework = "3.12.2"
