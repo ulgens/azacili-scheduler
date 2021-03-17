@@ -316,7 +316,7 @@ python-versions = "*"
 
 [[package]]
 name = "ipdb"
-version = "0.13.6"
+version = "0.13.7"
 description = "IPython-enabled pdb"
 category = "dev"
 optional = false
@@ -739,7 +739,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.5"
-content-hash = "7d2b11cd2b836d432555f64a2da0088cd5219423a32b3a6d37b47944765cd406"
+content-hash = "343c8b243beecb69ddb5ae91403c0322997db781a7209ac50614d49dce1494fa"
 
 [metadata.files]
 appnope = [
@@ -903,7 +903,7 @@ invoke = [
     {file = "invoke-1.4.1.tar.gz", hash = "sha256:de3f23bfe669e3db1085789fd859eb8ca8e0c5d9c20811e2407fa042e8a5e15d"},
 ]
 ipdb = [
-    {file = "ipdb-0.13.6.tar.gz", hash = "sha256:1aa37e19e5b3b96c930fe7fe97193a54202c23a8d1b1c7763f76553f5b275731"},
+    {file = "ipdb-0.13.7.tar.gz", hash = "sha256:178c367a61c1039e44e17c56fcc4a6e7dc11b33561261382d419b6ddb4401810"},
 ]
 ipython = [
     {file = "ipython-7.20.0-py3-none-any.whl", hash = "sha256:1918dea4bfdc5d1a830fcfce9a710d1d809cbed123e85eab0539259cb0f56640"},
