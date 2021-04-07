@@ -169,11 +169,14 @@ sqlparse = ">=0.2.0"
 
 [[package]]
 name = "django-extensions"
-version = "3.1.1"
+version = "3.1.2"
 description = "Extensions for Django"
 category = "main"
 optional = false
 python-versions = ">=3.6"
+
+[package.dependencies]
+Django = ">=2.2"
 
 [[package]]
 name = "django-migration-vis"
@@ -739,7 +742,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.5"
-content-hash = "23b169b5d79b7bca278f23faa0ff7639b2b5c47b950f9266dd97a8bc2784a720"
+content-hash = "92a04600f6ec07a4e0c9a3c0533e132c27cf5cb5e6850f806054c552763ac361"
 
 [metadata.files]
 appnope = [
@@ -855,8 +858,8 @@ django-debug-toolbar = [
     {file = "django_debug_toolbar-3.2-py3-none-any.whl", hash = "sha256:9e5a25d0c965f7e686f6a8ba23613ca9ca30184daa26487706d4829f5cfb697a"},
 ]
 django-extensions = [
-    {file = "django-extensions-3.1.1.tar.gz", hash = "sha256:674ad4c3b1587a884881824f40212d51829e662e52f85b012cd83d83fe1271d9"},
-    {file = "django_extensions-3.1.1-py3-none-any.whl", hash = "sha256:9507f8761ee760748938fd8af766d0608fb2738cf368adfa1b2451f61c15ae35"},
+    {file = "django-extensions-3.1.2.tar.gz", hash = "sha256:081828e985485662f62a22340c1506e37989d14b927652079a5b7cd84a82368b"},
+    {file = "django_extensions-3.1.2-py3-none-any.whl", hash = "sha256:17f85f4dcdd5eea09b8c4f0bad8f0370bf2db6d03e61b431fa7103fee29888de"},
 ]
 django-migration-vis = [
     {file = "django-migration-vis-2.0.0.tar.gz", hash = "sha256:291cceeb3da8d3b1b2b08b460f2266c637296c730d831f241f184d65b99871e3"},
