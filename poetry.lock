@@ -268,15 +268,15 @@ test = ["mock (>=3)", "pytest (>=4)", "pytest-mock (>=2)", "pytest-cov"]
 
 [[package]]
 name = "gunicorn"
-version = "20.0.4"
+version = "20.1.0"
 description = "WSGI HTTP Server for UNIX"
 category = "main"
 optional = false
-python-versions = ">=3.4"
+python-versions = ">=3.5"
 
 [package.extras]
-eventlet = ["eventlet (>=0.9.7)"]
-gevent = ["gevent (>=0.13)"]
+eventlet = ["eventlet (>=0.24.1)"]
+gevent = ["gevent (>=1.4.0)"]
 setproctitle = ["setproctitle"]
 tornado = ["tornado (>=0.2)"]
 
@@ -739,7 +739,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.8.5"
-content-hash = "3a92a67354e0d1c6612ff25c4f2512bb5bcf8ab72ed501f1d67349ee76736fc6"
+content-hash = "23b169b5d79b7bca278f23faa0ff7639b2b5c47b950f9266dd97a8bc2784a720"
 
 [metadata.files]
 appnope = [
@@ -886,8 +886,7 @@ graphviz = [
     {file = "graphviz-0.14.1.zip", hash = "sha256:f5aad52a652c06825dcc5ee018d920fca26aef339386866094597fb3f2f222ce"},
 ]
 gunicorn = [
-    {file = "gunicorn-20.0.4-py2.py3-none-any.whl", hash = "sha256:cd4a810dd51bf497552cf3f863b575dabd73d6ad6a91075b65936b151cbf4f9c"},
-    {file = "gunicorn-20.0.4.tar.gz", hash = "sha256:1904bb2b8a43658807108d59c3f3d56c2b6121a701161de0ddf9ad140073c626"},
+    {file = "gunicorn-20.1.0.tar.gz", hash = "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"},
 ]
 html5lib = [
     {file = "html5lib-1.1-py2.py3-none-any.whl", hash = "sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d"},
