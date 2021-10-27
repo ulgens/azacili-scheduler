@@ -13,7 +13,7 @@ django-migration-vis = "2.0.0"
 ipdb = "0.13.9"
 ipython = "7.27.0"
 fabric = "2.6.0"
-factory-boy = "3.2.0"
+factory-boy = "3.2.1"
 
 [tool.poetry.dependencies]
 python = "3.9.4"
